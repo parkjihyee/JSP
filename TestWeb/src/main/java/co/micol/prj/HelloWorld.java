@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebServlet("/aaa") // 이 이름으로 서버 컨테이너에 등록되어라
+@WebServlet("/aaa/hello") // 이 이름으로 서버 컨테이너에 등록되어라
 public class HelloWorld extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
