@@ -1,30 +1,31 @@
 package co.micol.prj;
 
 import java.io.IOException;
+
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/aaa/hello") // ÀÌ ÀÌ¸§À¸·Î ¼­¹ö ÄÁÅ×ÀÌ³Ê¿¡ µî·ÏµÇ¾î¶ó
+@WebServlet(urlPatterns = "/hello", loadOnStartup = 1) // ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³Ê¿ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ï¿½
 public class HelloWorld extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	
-    public HelloWorld() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	@Override
+	public void destroy() {
+		System.out.println("ì œê±°ë¨");
+	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		System.out.println("ìƒì„±ë¨");
+	}
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("ì„œë¹„ìŠ¤ ì‹¤í–‰");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

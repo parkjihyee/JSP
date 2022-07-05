@@ -1,4 +1,4 @@
-package co.micol.prj;
+package co.micol.prj.emp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,8 +20,9 @@ public class EmpListServ extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EmpDAO dao = new EmpDAO();
 
-		request.setAttribute("list", dao.selectAll()); 
-		request.getRequestDispatcher("WEB-INF/jsp/empList.jsp").forward(request, response);
+		String id = request.getParameter("departmentId");
+		request.setAttribute("list", dao.selectAll(id)); 
+		request.getRequestDispatcher("WEB-INF/jsp/emp/empList.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

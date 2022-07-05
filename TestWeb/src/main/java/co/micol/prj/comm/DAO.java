@@ -1,4 +1,4 @@
-package co.micol.prj;
+package co.micol.prj.comm;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
