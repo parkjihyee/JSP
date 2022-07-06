@@ -18,6 +18,7 @@ function validationForm(){
 
 </head>
 <body>
+<jsp:include page="/WEB-INF/jsp/header.jsp" />
 <form name="frm" action="DeptInsert" method="post">
 	부서 번호<input name="departmentId"><br>
 	부서 명<input name="departmentName">

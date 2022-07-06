@@ -10,6 +10,7 @@
 <title>jstl</title>
 </head>
 <body>
+<jsp:include page="/WEB-INF/jsp/header.jsp" />
 <h3>사원목록</h3>
 <a href="/TestWeb/empInsert">사원등록</a><br>
 
@@ -18,18 +19,17 @@
 	<button>검색</button>
 </form>
  
-	<table>
+	<table border>
 		<thead><tr><th>사번</th><th>이름</th><th>이메일</th><th>직무</th><th>입사년도</th></tr>
 		</thead>
 		<tbody>
 <c:forEach var="vo" items="${list}"> <%--주석 --%>
 			<tr>
 				<td>${vo.employeeId}</td>
-				<td>${vo.lastName}</td>
+				<td><a href="empUpdate?employeeId=${vo.employeeId}">${vo.lastName}</a></td>
 				<td>${vo.email}</td>
 				<td>${vo.jobId}</td>
 				<td>${vo.hireDate}</td>
-				
 			</tr>
 </c:forEach>		
 		</tbody>

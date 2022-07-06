@@ -7,6 +7,7 @@ public class EmpVO {
 	private String email;
 	private String jobId;
 	private String hireDate;
+	private String departmentId;
 
 	
 	
@@ -61,6 +62,16 @@ public class EmpVO {
 	
 
 	
+	public String getDepartmentId() {
+		return departmentId;
+	}
+
+
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
+	}
+
+
 	public EmpVO(String employeeId, String lastName, String email, String jobId, String hireDate, String departmentId) {
 		super();
 		this.employeeId = employeeId;

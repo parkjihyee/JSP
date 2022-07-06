@@ -2,7 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,16 +11,18 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
-<h4>부서 목록 - jstl</h4>
+<h4>부서 목록</h4>
 <a href="DeptInsert">부서등록</a>
 <table>
 	<tr><td>부서번호</td><td>부서명</td></tr>
-
-<c:forEach items="${list}" var="dept">
-	<tr><td>${dept.getDepartmentId()}</td>
-	    <td><a href="DeptUpdate?departmentId=${dept.getDepartmentId()}">
-	    ${dept.getDepartmentName()}</a></td>
-</c:forEach>
+<%
+	ArrayList<DeptVO> list = (ArrayList<DeptVO>)request.getAttribute("list");
+	for(DeptVO dept : list) {
+%>
+	<tr><td><%=dept.getDepartmentId() %></td>
+	    <td><a href="DeptUpdate?departmentId=<%=dept.getDepartmentId() %>"><%=dept.getDepartmentName() %></a></td>
+	
+<% } %>	
 </table>
 </body>
 </html>
