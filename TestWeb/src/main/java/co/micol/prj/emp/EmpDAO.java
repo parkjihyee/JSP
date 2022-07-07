@@ -15,7 +15,7 @@ public class EmpDAO extends DAO {
 			getConnect();
 			String sql = "select * from jobs order by job_id";
 			psmt = conn.prepareStatement(sql);
-			rs = psmt.executeQuery(sql);
+			rs = psmt.executeQuery(); 
 			while(rs.next()) {
 				JobsVO vo = new JobsVO();
 				vo.setJobId(rs.getString("job_id"));
@@ -74,7 +74,7 @@ public class EmpDAO extends DAO {
 	}
 	
 	// 단건 조회
-	public EmpVO selectOne(String employeeId) {
+	public EmpVO selectOne(String employeeId) { // employeeId를 주면 조회 /시작과끝을명확하게알때for문 레코드셋이몇갠지모르니까while문
 		EmpVO vo = new EmpVO();
 		try {
 			getConnect();

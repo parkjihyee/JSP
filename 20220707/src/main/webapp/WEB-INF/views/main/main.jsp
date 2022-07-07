@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- <%@ include file="/WEB-INF/jsp/header.jsp" %>--%>
-<jsp:include page="/WEB-INF/jsp/header.jsp" />
-<div align="center">
-	<h1> Welcome to My Home</h1>
-</div>
+<h1>시작하는 곳!</h1>
 </body>
 </html>

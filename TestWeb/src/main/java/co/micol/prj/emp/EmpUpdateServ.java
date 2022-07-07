@@ -20,9 +20,11 @@ public class EmpUpdateServ extends HttpServlet{
 		//DB조회
 		//jobs, 부서, 사원리스트
 		EmpDAO empDAO = new EmpDAO();
-		DeptDAO deptDAO = new DeptDAO();
 		request.setAttribute("jobs", empDAO.selectJobs());
+
+		DeptDAO deptDAO = new DeptDAO();
 		request.setAttribute("depts", deptDAO.selectAll()); 
+		
 		//수정할 데이터를 가져가야하기 때문에 단건조회 필요
 		String employeeId = request.getParameter("employeeId"); // 파라미터를 받아서
 		request.setAttribute("emp", empDAO.selectOne(employeeId)); //dao에 담아서?
