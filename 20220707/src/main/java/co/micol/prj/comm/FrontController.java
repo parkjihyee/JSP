@@ -11,8 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.micol.prj.Aaaaa;
 import co.micol.prj.MainCommand;
+import co.micol.prj.member.command.AjaxMemberIdCheck;
+import co.micol.prj.member.command.MemberJoin;
+import co.micol.prj.member.command.MemberJoinForm;
+import co.micol.prj.member.command.MemberList;
+import co.micol.prj.member.command.MemberLogin;
+import co.micol.prj.member.command.MemberLoginForm;
+import co.micol.prj.member.command.MemberLogout;
 
 @WebServlet("*.do") // *.do로 들어오면 무조건 이 서블릿 동작
 public class FrontController extends HttpServlet {
@@ -26,6 +32,13 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// 초기화 하는 메소드(Mapping 하는 부분을 작성)
 		map.put("/main.do", new MainCommand()); // 처음 접속하는 페이지 / main.do를 넘겼더니 new MainCommand가 옴
+		map.put("/memberLoginForm.do", new MemberLoginForm()); // 로그인 폼 호출
+		map.put("/memberLogin.do", new MemberLogin()); // 로그인 처리
+		map.put("/memberLogout.do", new MemberLogout()); // 로그아웃
+		map.put("/memberList.do", new MemberList()); // 회원 목록 보기
+		map.put("/memberJoinForm.do", new MemberJoinForm());
+		map.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck()); //ajax를 이용한 아이디 중복 체크
+		map.put("/memberJoin.do", new MemberJoin()); // 회원가입처리
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,8 +54,13 @@ public class FrontController extends HttpServlet {
 		
 		String viewPage = command.exec(request, response); //요청 Command를 수행하고 결과를 받음
 		
-		// viewResolve
+		// viewResolve / 보여줄page(돌려줄page)선택
 		if(!viewPage.endsWith(".do") && !viewPage.equals(null)) { //문자열끝에 .do가 붙어있지않고 null이 아니면 아래 실행
+			if(viewPage.startsWith("ajax:")) { // 시작하는 문구에 ajax: 가 있으면
+				response.setContentType("text/html; charset=UTF-8");
+				response.getWriter().append(viewPage.substring(5)); // ajax:가 다섯글자!
+				return;
+			}
 			viewPage = "WEB-INF/views/" + viewPage + ".jsp"; //시스템에서 접근 가능한 폴더를 더해주고
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response); // 원하는 페이지를 호출해서 전달함
