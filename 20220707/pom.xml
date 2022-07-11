@@ -19,6 +19,7 @@
     <maven.compiler.target>11</maven.compiler.target>
   </properties>
 
+
   <dependencies>
   <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 <dependency>
@@ -27,6 +28,15 @@
     <version>3.1.0</version>
     <scope>provided</scope>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-extras -->
+<dependency>
+    <groupId>org.apache.tiles</groupId>
+    <artifactId>tiles-extras</artifactId>
+    <version>3.0.8</version>
+</dependency>
+
+
 
 <dependency>
 <groupId>com.oracle.database.jdbc</groupId>
